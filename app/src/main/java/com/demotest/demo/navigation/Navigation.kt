@@ -9,6 +9,14 @@ import com.demotest.demo.ui.screens.*
 import com.demotest.demo.viewmodel.*
 
 sealed class Screen(val route: String, val title: String) {
+    object WeekSelection : Screen("week_selection", "Week Selection")
+    object Week1 : Screen("week_1", "Week 1")
+    object Week2 : Screen("week_2", "Week 2")
+    object Week3 : Screen("week_3", "Week 3")
+    object Week4 : Screen("week_4", "Week 4")
+    object Week5 : Screen("week_5", "Week 5")
+    object Week6 : Screen("week_6", "Week 6")
+    object MvvmDemo : Screen("mvvm_demo", "MVVM Demo")
     object Home : Screen("home", "Flow Demo Hub")
     object BasicFlow : Screen("basic_flow", "Basic Flow")
     object FlowOperators : Screen("flow_operators", "Flow Operators")
@@ -22,8 +30,73 @@ sealed class Screen(val route: String, val title: String) {
 fun AppNavigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route
+        startDestination = Screen.WeekSelection.route
     ) {
+        composable(Screen.WeekSelection.route) {
+            WeekSelectionScreen(
+                onWeekSelected = { weekNumber ->
+                    when (weekNumber) {
+                        1 -> navController.navigate(Screen.Week1.route)
+                        2 -> navController.navigate(Screen.Week2.route)
+                        3 -> navController.navigate(Screen.Week3.route)
+                        4 -> navController.navigate(Screen.Week4.route)
+                        5 -> navController.navigate(Screen.Week5.route)
+                        6 -> navController.navigate(Screen.Week6.route)
+                    }
+                }
+            )
+        }
+        
+        composable(Screen.Week1.route) {
+            Week1Screen(
+                onNavigate = { route -> navController.navigate(route) },
+                onBack = { navController.popBackStack() }
+            )
+        }
+        
+        composable(Screen.Week2.route) {
+            Week2Screen(
+                onNavigate = { route -> navController.navigate(route) },
+                onBack = { navController.popBackStack() }
+            )
+        }
+        
+        composable(Screen.MvvmDemo.route) {
+            val viewModel: MvvmDemoViewModel = viewModel()
+            MvvmDemoScreen(
+                viewModel = viewModel,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        
+        composable(Screen.Week3.route) {
+            ComingSoonScreen(
+                weekNumber = 3,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        
+        composable(Screen.Week4.route) {
+            ComingSoonScreen(
+                weekNumber = 4,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        
+        composable(Screen.Week5.route) {
+            ComingSoonScreen(
+                weekNumber = 5,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        
+        composable(Screen.Week6.route) {
+            ComingSoonScreen(
+                weekNumber = 6,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        
         composable(Screen.Home.route) {
             HomeScreen(
                 onNavigate = { route -> navController.navigate(route) }
