@@ -90,6 +90,24 @@ fun Week2Screen(
             
             item {
                 Text(
+                    "Day 3: Layered Architecture",
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
+            
+            item {
+                DemoItem(
+                    title = "Clean Architecture Demo",
+                    desc = "Data, Domain, Presentation layers + Unidirectional flow"
+                ) {
+                    onNavigate("layered_arch")
+                }
+            }
+            
+            item { Spacer(modifier = Modifier.height(16.dp)) }
+            
+            item {
+                Text(
                     "Coming Soon",
                     style = MaterialTheme.typography.titleLarge
                 )
@@ -104,7 +122,7 @@ fun Week2Screen(
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
-                            "Day 3-7: More Content",
+                            "Day 4-7: More Content",
                             style = MaterialTheme.typography.titleMedium
                         )
                         Spacer(modifier = Modifier.height(4.dp))
