@@ -17,6 +17,7 @@ sealed class Screen(val route: String, val title: String) {
     object Week5 : Screen("week_5", "Week 5")
     object Week6 : Screen("week_6", "Week 6")
     object MvvmDemo : Screen("mvvm_demo", "MVVM Demo")
+    object MviDemo : Screen("mvi_demo", "MVI Demo")
     object Home : Screen("home", "Flow Demo Hub")
     object BasicFlow : Screen("basic_flow", "Basic Flow")
     object FlowOperators : Screen("flow_operators", "Flow Operators")
@@ -64,6 +65,14 @@ fun AppNavigation(navController: NavHostController) {
         composable(Screen.MvvmDemo.route) {
             val viewModel: MvvmDemoViewModel = viewModel()
             MvvmDemoScreen(
+                viewModel = viewModel,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        
+        composable(Screen.MviDemo.route) {
+            val viewModel: MviDemoViewModel = viewModel()
+            MviDemoScreen(
                 viewModel = viewModel,
                 onBack = { navController.popBackStack() }
             )

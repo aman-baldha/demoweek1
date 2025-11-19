@@ -72,6 +72,24 @@ fun Week2Screen(
             
             item {
                 Text(
+                    "Day 2: MVI Pattern",
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
+            
+            item {
+                DemoItem(
+                    title = "MVI Architecture Demo",
+                    desc = "Model-View-Intent with sealed class Intents"
+                ) {
+                    onNavigate("mvi_demo")
+                }
+            }
+            
+            item { Spacer(modifier = Modifier.height(16.dp)) }
+            
+            item {
+                Text(
                     "Coming Soon",
                     style = MaterialTheme.typography.titleLarge
                 )
@@ -86,7 +104,7 @@ fun Week2Screen(
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
-                            "Day 2-7: More Content",
+                            "Day 3-7: More Content",
                             style = MaterialTheme.typography.titleMedium
                         )
                         Spacer(modifier = Modifier.height(4.dp))
