@@ -7,6 +7,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.demotest.demo.ui.screens.*
 import com.demotest.demo.viewmodel.*
+import com.demotest.demo.week3.ui.Week3Screen
+import com.demotest.demo.week3.ui.Week3ViewModel
+import com.demotest.demo.week3.ui.Week3ViewModelFactory
+import com.demotest.demo.week3.data.Week3Database
+import com.demotest.demo.week3.data.Week3Repository
+import androidx.compose.ui.platform.LocalContext
 
 sealed class Screen(val route: String, val title: String) {
     object WeekSelection : Screen("week_selection", "Week Selection")
@@ -88,8 +94,14 @@ fun AppNavigation(navController: NavHostController) {
         }
         
         composable(Screen.Week3.route) {
-            ComingSoonScreen(
-                weekNumber = 3,
+            val context = LocalContext.current
+            val database = Week3Database.getDatabase(context)
+            val repository = Week3Repository(database.week3Dao())
+            val viewModel: Week3ViewModel = viewModel(
+                factory = Week3ViewModelFactory(repository)
+            )
+            Week3Screen(
+                viewModel = viewModel,
                 onBack = { navController.popBackStack() }
             )
         }
